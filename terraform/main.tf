@@ -105,10 +105,11 @@ Note: You don't need the below resources for using the Pegasus tool
   
  */
 
+/* 
 # Configuration for a "master" instance
 resource "aws_instance" "cluster_master" {
     ami             = "${lookup(var.amis, var.aws_region)}"
-    instance_type   = "t2.micro"
+    instance_type   = "m4.large"
     key_name        = "${var.keypair_name}"
     count           = 1
 
@@ -135,7 +136,7 @@ resource "aws_instance" "cluster_master" {
 # Configuration for 3 "worker" instance
 resource "aws_instance" "cluster_workers" {
     ami             = "${lookup(var.amis, var.aws_region)}"
-    instance_type   = "t2.micro"
+    instance_type   = "m4.large"
     key_name        = "${var.keypair_name}"
     count           = 3
 
@@ -165,3 +166,4 @@ resource "aws_eip" "elastic_ips_for_instances" {
   instance  = "${element(concat(aws_instance.cluster_master.*.id, aws_instance.cluster_workers.*.id), count.index)}"
   count     = "${aws_instance.cluster_master.count + aws_instance.cluster_workers.count}"
 }
+*/
